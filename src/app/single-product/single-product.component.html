@@ -1,0 +1,19 @@
+<div class="card">
+    <img [src]="product.image" class="card-img-top" [alt]="product.name" />
+    <div class="card-body">
+      <h5 class="card-title">{{product.name | uppercase}}</h5>
+      <p class="card-text">
+        {{product.description}}
+      </p>
+      <p>{{ product.createdAt | date : 'MMMM , y' }}</p>
+      <div *ngIf="product.count>0; then trueBlock; else falseBlock"></div>
+      <ng-template #trueBlock>
+        <div>in stock</div>
+      </ng-template>
+      <ng-template #falseBlock>
+        <div>out of stock</div>
+      </ng-template>
+      <p>{{product.price | currency:"AUD":"EG":"2.":"fr"}}</p>
+      <button class="btn btn-primary">add to cart</button>
+    </div>
+  </div>
