@@ -1,5 +1,5 @@
 <div class="card">
-    <img [src]="product.image" class="card-img-top" [alt]="product.name" />
+    <img (click)="handleClickOnproductButton()" [src]="product.image" class="card-img-top" [alt]="product.name" />
     <div class="card-body">
       <h5 class="card-title">{{product.name | uppercase}}</h5>
       <p class="card-text">
@@ -14,6 +14,6 @@
         <div>out of stock</div>
       </ng-template>
       <p>{{product.price | currency:"AUD":"EG":"2.":"fr"}}</p>
-      <button class="btn btn-primary">add to cart</button>
+      <button class="btn btn-primary" [disabled]="product.count===0" (click)="increaseCounter()">add to cart</button>
     </div>
   </div>

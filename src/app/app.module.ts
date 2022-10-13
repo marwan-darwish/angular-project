@@ -7,19 +7,44 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import{FormsModule} from "@angular/forms";
+import { NotFoundComponent } from './not-found/not-found.component'
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SingeProductComponent } from './singe-product/singe-product.component';
+import { CartComponent } from './cart/cart.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
+
 registerLocaleData(localeFr,"fr")
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     SingleProductComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent,
+    LoginComponent,
+    NotFoundComponent,
+    SingeProductComponent,
+    CartComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+FormsModule,
+HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

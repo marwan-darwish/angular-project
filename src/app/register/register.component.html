@@ -1,0 +1,113 @@
+<form [formGroup]="registerForm" (ngSubmit)=" formDisable && handleSubmitForm()">
+<div class="row">
+    <div class="col text-center p-2 mb-3">
+        <h2>Register</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+  <div *ngIf="formControls['firstName'].touched && !formControls['firstName'].valid">
+
+
+    <div
+    id="nameHelp"
+    *ngIf="
+      formControls['firstName'].errors &&
+      formControls['firstName'].errors['required']
+    "
+    class="form-text text-danger"
+  >
+    This field is required
+  </div>
+  </div>
+   
+
+
+</div>
+    <div class="col">
+        <label for="lastName" class="form-label">last Name</label>
+        <input type="text" class="form-control" id="lasttName" formControlName="lastName">
+    </div>
+</div>
+<div class="row">
+    <label for="email" class="form-label">email</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <div *ngIf="formControls['email'].touched && !formControls['email'].valid"
+    
+    >
+<div class="text-danger"    *ngIf="
+formControls['email'].errors &&
+formControls['email'].errors['required']
+" >
+this field is required
+</div>
+<div  *ngIf=" formControls['email'].errors &&
+formControls['email'].errors['pattern']">
+this email is invalid
+</div>
+</div>
+</div>
+<div class="row">
+    <div class="col">
+        <label for="password" class="form-label">password</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <div *ngIf="formControls['password'].touched && !formControls['password'].valid">
+
+
+        <div
+        id="nameHelp"
+        *ngIf="
+          formControls['password'].errors &&
+          formControls['password'].errors['required']
+        "
+        class="form-text text-danger"
+      >
+        This field is required
+      </div>
+      <div
+      id="nameHelp"
+      *ngIf="
+        formControls['password'].errors &&
+        formControls['password'].errors['pattern']
+      "
+      class="form-text text-danger"
+    >
+      password must be at least 8 charcters long with some conditions
+    </div>
+      </div>
+</div>
+    <div class="col">
+        <label for="rpassword" class="form-label">rpassword</label>
+        <input type="password" class="form-control" id="rpassword" formControlName="rpassword">
+        <div *ngIf="formControls['rpassword'].touched && !formControls['rpassword'].valid">
+
+
+            <div
+            id="nameHelp"
+            *ngIf="
+              formControls['rpassword'].errors &&
+              formControls['rpassword'].errors['required']
+            "
+            class="form-text text-danger"
+          >
+            This field is required
+          </div>
+        
+          </div>
+          <div
+          id="nameHelp"
+          *ngIf="
+            formControls['password'].value!==formControls['rpassword'].value
+          "
+          class="form-text text-danger"
+        >
+          not the same
+        </div>
+    </div>
+
+
+</div>
+<button type="submit" [disabled]="!formDisable"  class="btn btn-primary">submit</button>
+</form>

@@ -1,0 +1,11 @@
+<p *ngIf="cartTotal===0">no items here</p>
+<div *ngFor="let item of cart">
+<h2>{{item.name}}</h2>
+<p>{{item.quantity}}</p>
+<button (click)="incQuantity(item.id,item.price)">+</button>
+<button (click)="decQuantity(item.id,item.price)">-</button>
+<button (click)="removeitem(item.id,item.price,item.quantity)">Remove</button>
+
+</div>
+
+<p>{{total}}</p>
