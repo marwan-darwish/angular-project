@@ -8,7 +8,6 @@ import { ProductsComponent } from './products/products.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import{FormsModule} from "@angular/forms";
 import { NotFoundComponent } from './not-found/not-found.component'
@@ -17,6 +16,11 @@ import { SingeProductComponent } from './singe-product/singe-product.component';
 import { CartComponent } from './cart/cart.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { wishListReducer } from 'src/store/wishlist.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeFr,"fr")
 @NgModule({
@@ -26,7 +30,6 @@ registerLocaleData(localeFr,"fr")
     SingleProductComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent,
     NotFoundComponent,
     SingeProductComponent,
     CartComponent,
@@ -36,8 +39,14 @@ registerLocaleData(localeFr,"fr")
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AuthModule,
 FormsModule,
-HttpClientModule
+HttpClientModule,
+StoreModule.forRoot({
+wishlistStore:wishListReducer
+}),
+StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+
   ],
   providers: [
     {

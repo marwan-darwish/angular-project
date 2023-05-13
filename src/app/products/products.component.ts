@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../interface/product';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,7 +9,8 @@ import { Product } from '../interface/product';
 })
 export class ProductsComponent implements OnInit {
 productList=[]
-  constructor(private productService:ProductsService) { }
+wishList:Array<any>=[]
+  constructor(private productService:ProductsService,private store:Store<any>) { }
 
   ngOnInit(): void {
    this.productService.getProducts().subscribe((products:any)=>(this.productList=products.map((product:any)=>{
@@ -16,7 +18,10 @@ productList=[]
          ...product
       }
    })));
-   
+   this.store.select("wishlistStore").subscribe((res)=>this.wishList=[...res.items])
   }
-
+checkWishList(){
+  console.log(this.wishList);
+  
+}
 }

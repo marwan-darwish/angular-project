@@ -7,6 +7,8 @@ import{NotFoundComponent} from "./not-found/not-found.component"
 import { SingeProductComponent } from './singe-product/singe-product.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ResetComponent } from './auth/reset/reset.component';
+import { NewLoginComponent } from './auth/new-login/new-login.component';
 const routes: Routes = [
   {
     path:"",
@@ -18,7 +20,7 @@ const routes: Routes = [
   },
   {
     path:"login",
-    component:LoginComponent
+    component:NewLoginComponent
   },
   {
     path:"single-product/:id",
@@ -27,7 +29,10 @@ const routes: Routes = [
   {
 path:"cart",
 component:CartComponent,
-canActivate:[AuthGuard]
+  },
+  {
+    path:"forget",
+    component:ResetComponent
   },
   {
     path:"**",

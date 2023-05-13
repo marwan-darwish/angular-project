@@ -1,6 +1,6 @@
-<!-- <form #loginForm="ngForm" (ngSubmit)="handleSubmitForm(loginForm)">
+<form #loginForm="ngForm" (ngSubmit)="handleSubmitForm(loginForm)">
     <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
+      <label for="email" class="form-label">Emailsssss</label>
       <input
         type="email"
         class="form-control"
@@ -43,6 +43,7 @@ pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
         name="password"
         class="form-control"
         id="password"
+        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
         required
       />
       <div
@@ -56,8 +57,8 @@ pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
         </div>
       </div>
     </div>
-    <button type="submit" [disabled]="!isDisabled(loginForm)" class="btn btn-primary">Submit</button>
+    <button type="submit" [disabled]="!isDisabled(loginForm)" [routerLink]="['']" class="btn btn-primary">Submit</button>
   </form>
 
   <a class="btn btn-primary" [routerLink]="['/register']"> dont have a account ?</a>
- -->
+

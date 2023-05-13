@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Product } from '../interface/product';
 import { CounterService } from '../counter.service';
 import { ProductsService } from '../products.service';
-
+import { Store } from '@ngrx/store';
+import { addToWishList,removeFromWishList } from 'src/store/wishlist.action';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -23,10 +24,11 @@ export class SingleProductComponent implements OnInit {
   ],
   "id":"0"
 }
+@Input()wishLIstButton:boolean=false
 counter:number=0
 prices:any=0
 cart:any=[]
-  constructor(private router:Router,private counterService:CounterService,private addToCart:ProductsService) { }
+  constructor(private router:Router,private counterService:CounterService,private addToCart:ProductsService,private store:Store<any>) { }
 
   ngOnInit(): void {
     this.counterService.counterVal.subscribe((val) => this.counter = val)
@@ -45,5 +47,11 @@ this.addToCart.priceVal.subscribe((val)=>this.prices=val)
     // console.log(this.cart);
     console.log(this.prices);
     
+  }
+  pushToWishList(item:any){
+    this.store.dispatch(addToWishList({item:item}))
+  }
+  removeWishList(val:any){
+this.store.dispatch(removeFromWishList({id:val}))
   }
 }

@@ -3,3 +3,18 @@
          <app-single-product [product]="product"></app-single-product>
     </div>
 </div>
+<div class="row">
+    <div *ngIf="wishList.length==0">
+no items 
+    </div>
+    <div class="container" *ngIf="wishList.length>0">
+        <p>product count is {{wishList.length}}</p>
+<div class="row">
+
+    <div *ngFor="let item of wishList" class="col-md-6">
+        <app-single-product [product]="item" [wishLIstButton]="true"></app-single-product>
+
+    </div>
+</div>
+    </div>
+</div>
